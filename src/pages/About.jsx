@@ -148,23 +148,38 @@ const About = () => {
                         key={index}
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.2 }}
+                        whileHover={{
+                           scale: 1.02,
+                           x: 10,
+                        }}
+                        transition={{
+                           duration: 0.3,
+                           delay: index * 0.2
+                        }}
                         className="relative ml-16 mb-12"
                      >
-                        <div className="absolute -left-20 top-0 w-8 h-8 rounded-full bg-gray-900  flex items-center justify-center">
+                        <motion.div
+                           initial={{ scale: 0.8 }}
+                           animate={{ scale: 1 }}
+                           className="absolute -left-20 top-0 w-8 h-8 rounded-full bg-gray-900 flex items-center justify-center"
+                           whileHover={{
+                              scale: 1.2,
+                              boxShadow: "0 0 20px rgba(59, 130, 246, 0.3)"
+                           }}
+                        >
                            {index === 0 ?
-                              <FaGraduationCap className="text-blue-500" /> :
+                              <FaGraduationCap className="text-sky-500" /> :
                               <FaSchool className="text-rose-400" />
                            }
-                        </div>
-                        <div className="p-6 rounded-lg bg-gray-900/20 border border-gray-800 backdrop-blur-sm hover:border-indigo-500/50 transition-all duration-300">
+                        </motion.div>
+                        <div className="p-6 rounded-lg bg-gray-900/20 border border-gray-800 backdrop-blur-sm hover:border-sky-500/20 transition-all duration-300">
                            <div className="text-sm text-fuchsia-500">{edu.year}</div>
                            <h3 className="text-xl font-bold text-white mt-1">{edu.degree}</h3>
                            <p className="text-gray-400">{edu.school}</p>
                            <p className="text-sm text-gray-500 mt-2">{edu.details}</p>
                            <div className="mt-4 h-1 bg-gray-800 rounded-full overflow-hidden">
                               <motion.div
-                                 className="h-full bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500"
+                                 className="h-full bg-gradient-to-r from-sky-400 to-blue-600"
                                  initial={{ width: 0 }}
                                  animate={{ width: `${edu.progress}%` }}
                                  transition={{ duration: 1, delay: 0.5 }}

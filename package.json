@@ -22,9 +22,11 @@
     "react-router-dom": "^7.1.5",
     "react-router-hash-link": "^2.4.3",
     "react-scroll": "^1.9.0",
+    "react-tsparticles": "^2.12.2",
     "react-type-animation": "^3.2.0",
     "react-vertical-timeline-component": "^3.5.3",
-    "tailwindcss-dark-mode": "^1.1.7"
+    "tailwindcss-dark-mode": "^1.1.7",
+    "tsparticles": "^3.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

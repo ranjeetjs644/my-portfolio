@@ -4,6 +4,25 @@ import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNode, FaGitAlt, FaGithub, FaDocker
 import { SiTypescript, SiExpress, SiMongodb, SiMysql, SiPostman, SiRemix, SiTailwindcss } from "react-icons/si";
 import { TbBrandPython, TbCloudComputing } from "react-icons/tb";
 
+const GlowingOrb = ({ delay = 0 }) => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{
+      opacity: [0.1, 0.3, 0.1],
+      scale: [1, 1.2, 1],
+    }}
+    transition={{
+      duration: 8,
+      repeat: Infinity,
+      delay,
+    }}
+    className="absolute w-[30vw] h-[30vw] bg-gradient-radial from-white/5 to-transparent rounded-full blur-3xl"
+    style={{
+      background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)',
+    }}
+  />
+);
+
 const skills = {
   "Frontend": [
     { name: "HTML", icon: <FaHtml5 className="text-[#E34F26]" /> },
@@ -38,9 +57,16 @@ const skills = {
   ]
 };
 
+
+
 const Skills = () => {
   return (
-    <div className="min-h-screen py-20 px-8 lg:px-24 relative overflow-hidden bg-[#0A0A0A]">
+    <div className="min-h-screen py-16 px-8 lg:px-24 relative overflow-hidden bg-[#0A0A0A]">
+      {/* Add Glowing Orbs */}
+      <GlowingOrb delay={0} style={{ top: '10%', left: '15%' }} />
+      <GlowingOrb delay={2} style={{ top: '60%', right: '15%' }} />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
+
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f1a_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f1a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
 

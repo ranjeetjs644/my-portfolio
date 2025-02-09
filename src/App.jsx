@@ -13,11 +13,11 @@ function App() {
       <div className="relative min-h-screen">
         <GlowingCursor />
         <Navbar />
-        <main id="scroll-container" className="pt-16 overflow-y-auto h-full">
+        <main id="scroll-container" className="pt-16  h-full">
           <section id="home" className="h-screen">
             <Home />
           </section>
-          <section id="about" className="">
+          <section id="about" className="h-screen">
             <About />
           </section>
           <section id="skills" className="h-screen">
