@@ -57,65 +57,147 @@ const skills = {
   ]
 };
 
-
-
 const Skills = () => {
   return (
-    <div className="min-h-screen py-16 px-8 lg:px-24 relative overflow-hidden bg-[#0A0A0A]">
-      {/* Add Glowing Orbs */}
-      <GlowingOrb delay={0} style={{ top: '10%', left: '15%' }} />
-      <GlowingOrb delay={2} style={{ top: '60%', right: '15%' }} />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
+    <div className="min-h-screen py-12 md:py-24 px-4 relative overflow-hidden ">
+      {/* Modern grid background */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2a_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+      </div>
 
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f1a_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f1a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
-
-      {/* Glow Effects */}
-      <div className="absolute top-0 -left-4 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-2xl opacity-[0.05] animate-blob"></div>
-      <div className="absolute top-0 -right-4 w-64 h-64 bg-cyan-500 rounded-full mix-blend-multiply filter blur-lg opacity-[0.05] animate-blob animation-delay-2000"></div>
-      <div className="absolute -bottom-8 left-20 w-64 h-64 bg-indigo-500 rounded-full mix-blend-multiply filter blur-lg opacity-[0.05] animate-blob animation-delay-4000"></div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-20"
-        >
-          <h1 className="text-4xl md:text-2xl font-bold mt-6 text-white border-b border-gray-800 inline-block hover:border-gray-400 transition-colors duration-300">
-            My Skills
-          </h1>
+      <div className="container mx-auto max-w-6xl relative z-10">
+        {/* Minimal header */}
+        <motion.div className="text-center mb-16">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-blue-400/80 text-sm tracking-wider uppercase mb-3"
+          >
+            Technology Stack
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-3xl md:text-4xl font-bold tracking-tight"
+          >
+            Skills & Expertise
+          </motion.h1>
+          <div className="mt-6 h-px w-20 bg-gradient-to-r from-transparent via-blue-400/50 to-transparent mx-auto"></div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Modern skills grid */}
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
           {Object.entries(skills).map(([category, skills], index) => (
             <motion.div
               key={category}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
-              className="p-6 rounded-xl backdrop-blur-sm bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.04] transition-all duration-300 cursor-pointer"
+              transition={{ delay: index * 0.1 }}
             >
-              <h2 className="text-2xl font-semibold text-white mb-4">
-                {category}
-              </h2>
-              <div className="flex flex-wrap gap-3 cursor-pointer">
-                {skills.map((skill) => (
-                  <motion.div
-                    key={skill.name}
-                    whileHover={{ scale: 1.05 }}
-                    className="flex items-center gap-2 px-4 py-2 bg-black/20 backdrop-blur-md rounded-md border border-white/[0.05] text-base transition-all hover:border-white/[0.1] cursor-pointer"
-                  >
-                    {skill.icon}
-                    <span className="text-gray-300">{skill.name}</span>
-                  </motion.div>
-                ))}
+              <div className="group h-full relative p-6 rounded-2xl 
+                bg-gradient-to-b from-gray-900/50 to-gray-900/30
+                backdrop-blur-sm border border-gray-800/50
+                hover:border-blue-500/20 transition-all duration-500"
+              >
+                {/* Minimal category header */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-blue-400/20 blur-xl rounded-full"></div>
+                    <div className="relative w-12 h-12 rounded-xl 
+                      bg-gray-900/80 flex items-center justify-center
+                      border border-gray-800/50"
+                    >
+                      {getCategoryIcon(category)}
+                    </div>
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-semibold text-white/90">
+                      {category}
+                    </h2>
+                    <p className="text-sm text-gray-400 mt-1">
+                      {getCategoryDescription(category)}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Modern skills layout */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {skills.map((skill) => (
+                    <motion.div
+                      key={skill.name}
+                      whileHover={{ scale: 1.02, y: -2 }}
+                      className="flex items-center gap-3 p-3
+                        rounded-xl bg-white/[0.02] border border-gray-800/50
+                        hover:border-blue-500/20 hover:bg-white/[0.04]
+                        transition-all duration-300"
+                    >
+                      <span className="text-xl opacity-80 group-hover:opacity-100 transition-opacity">
+                        {skill.icon}
+                      </span>
+                      <span className="text-sm text-gray-400 font-medium">
+                        {skill.name}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Subtle gradient overlay */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-blue-500/[0.02] to-transparent pointer-events-none"></div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Minimal footer text */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="text-center text-sm text-gray-500 mt-12 max-w-2xl mx-auto"
+        >
+          These technologies represent my current toolkit, constantly evolving as I explore new possibilities.
+        </motion.p>
+      </div>
+
+      {/* Subtle background effects */}
+      <div className="hidden md:block absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-1/3 h-1/3 
+          bg-gradient-to-br from-blue-500/5 to-transparent rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 right-0 w-1/3 h-1/3 
+          bg-gradient-to-tl from-indigo-500/5 to-transparent rounded-full blur-[100px]" />
       </div>
     </div>
   );
+};
+
+const getCategoryIcon = (category) => {
+  switch (category) {
+    case "Frontend":
+      return <FaReact className="text-3xl text-indigo-400" />;
+    case "Backend":
+      return <FaNode className="text-3xl text-emerald-400" />;
+    case "MERN Stack":
+      return <SiMongodb className="text-3xl text-green-400" />;
+    case "Database & Tools":
+      return <FaDocker className="text-3xl text-cyan-400" />;
+    default:
+      return null;
+  }
+};
+
+const getCategoryDescription = (category) => {
+  switch (category) {
+    case "Frontend":
+      return "Building interactive and responsive user interfaces";
+    case "Backend":
+      return "Handling server-side logic and API development";
+    case "MERN Stack":
+      return "Full-stack development with MongoDB, Express, React & Node.js";
+    case "Database & Tools":
+      return "Database management and development tools";
+    default:
+      return "";
+  }
 };
 
 export default Skills;

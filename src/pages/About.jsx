@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaSchool, FaMapMarkerAlt, FaEnvelope, FaCode, FaServer, FaRobot } from 'react-icons/fa';
+import { FaGraduationCap, FaSchool, FaMapMarkerAlt, FaEnvelope, FaCode, FaTerminal, FaRobot } from 'react-icons/fa';
 import { TbCloudComputing } from "react-icons/tb";
-
+import MobileCard from '../components/MobileCard';
 
 const About = () => {
    const education = [
@@ -23,163 +23,117 @@ const About = () => {
    ];
 
    const interests = [
-      { icon: <FaCode />, label: "Full Stack" },
-      { icon: <TbCloudComputing />, label: "Edge Computing" },
-      { icon: <FaRobot />, label: "AI/ML" }
+      { icon: <FaTerminal />, label: "Full Stack Development", desc: "Building end-to-end web applications" },
+      { icon: <TbCloudComputing />, label: "Edge Computing", desc: "Exploring distributed systems" },
+      { icon: <FaRobot />, label: "AI/ML", desc: "Machine learning applications" }
    ];
 
    return (
-      <div className="min-h-screen py-20 px-8 lg:px-24 relative overflow-hidden bg-[#000000]">
-         {/* Background Pattern */}
-         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f1a_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f1a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+      <div className="min-h-screen py-12 md:py-24 px-4 relative overflow-hidden ">
+         {/* Modern grid background */}
+         <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f0a_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f0a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+         </div>
 
-         {/* Glow Effects - Reduced intensity */}
-         <div className="absolute top-0 -left-4 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-2xl opacity-[0.05] animate-blob"></div>
-         <div className="absolute top-0 -right-4 w-64 h-64 bg-cyan-500 rounded-full mix-blend-multiply filter blur-lg opacity-[0.05] animate-blob animation-delay-2000"></div>
-         <div className="absolute -bottom-8 left-20 w-64 h-64 bg-indigo-500 rounded-full mix-blend-multiply filter blur-lg opacity-[0.05] animate-blob animation-delay-4000"></div>
-
-         <div className="max-w-7xl mx-auto relative z-10">
-            {/* About Header */}
+         <div className="container mx-auto max-w-6xl relative z-10">
+            {/* Minimal header */}
             <motion.div
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
-               className="text-center mb-20"
+               className="text-center mb-16"
             >
-               <h1 className="text-4xl md:text-2xl font-bold mt-6 text-white border-b border-gray-800 inline">
-                  About Me
+               <h1 className="text-3xl md:text-4xl font-bold">
+                  About <span className="text-gray-400">&</span> <span className="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">Journey</span>
                </h1>
+               <p className="mt-4 text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
+                  A passionate developer focused on building elegant solutions to complex problems
+               </p>
             </motion.div>
 
-            {/* Content Grid */}
-            <div className="grid lg:grid-cols-2 gap-10">
-               {/* Left Section */}
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+               {/* Left Column - Bio & Interests */}
                <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   className="space-y-8"
                >
-                  {/* Intro Card */}
-                  <motion.div
-                     whileHover={{
-                        scale: 1.02,
-                        rotateX: 5,
-                        rotateY: 5,
-                     }}
-                     className="p-8 rounded-2xl bg-gradient-to-r from-gray-900/50 to-gray-800/50 border border-gray-800/50 backdrop-blur-sm transform transition-all duration-300 hover:border-blue-500/50"
-                     style={{ transformStyle: "preserve-3d" }}
-                  >
-                     <h3 className="text-2xl font-bold text-white mb-4">
-                        Hi, I'm <span className="bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 bg-clip-text text-transparent">Ranjeet</span>
-                     </h3>
-                     <p className="text-gray-300 leading-relaxed">
-                        A Computer Science student passionate about crafting digital experiences through code.
+                  {/* Bio Card */}
+                  <div className="p-6 md:p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-900/40 border border-gray-800/30">
+                     <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
+                        Hi, I'm <span className="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">Ranjeet</span>
+                     </h2>
+                     <p className="text-gray-400 leading-relaxed">
+                        A Computer Science student passionate about crafting digital experiences through code. Currently exploring the intersections of web development, edge computing, and artificial intelligence.
                      </p>
-                  </motion.div>
 
-                  {/* Stats Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                     <motion.div
-                        whileHover={{
-                           scale: 1.05,
-                           rotateX: -5,
-                           rotateY: 5,
-                        }}
-                        className="p-6 rounded-xl bg-gradient-to-r from-gray-900/50 to-gray-800/50 backdrop-blur-sm 
-                                   hover:border hover:border-rose-400/50 transform transition-all duration-300 border-transparent"
-                        style={{ transformStyle: "preserve-3d" }}
-                     >
-                        <div className='flex items-center gap-4'>
-                           <FaMapMarkerAlt className="text-2xl text-rose-400" />
-                           <h4 className="text-white text-base md:text-lg font-medium">Location</h4>
+                     {/* Contact Info */}
+                     <div className="mt-6 flex flex-col sm:grid sm:grid-cols-2 gap-4">
+                        <div className="flex items-center gap-3">
+                           <FaMapMarkerAlt className="text-indigo-400 flex-shrink-0" />
+                           <span className="text-sm text-gray-400 truncate">Ahmedabad, India</span>
                         </div>
-                        <p className="text-sm md:text-base text-gray-400 mt-2">Ahmedabad, India</p>
-                     </motion.div>
-
-                     <motion.div
-                        whileHover={{
-                           scale: 1.05,
-                           rotateX: -5,
-                           rotateY: -5,
-                        }}
-                        className="p-6 rounded-xl bg-gradient-to-r from-gray-900/50 to-gray-800/50 backdrop-blur-sm 
-                                   hover:border hover:border-indigo-500/50 transform transition-all duration-300 border-transparent"
-                        style={{ transformStyle: "preserve-3d" }}
-                     >
-                        <div className='flex items-center gap-4'>
-                           <FaEnvelope className="text-2xl text-indigo-400" />
-                           <h4 className="text-white text-base md:text-lg font-medium">Email</h4>
+                        <div className="flex items-center gap-3">
+                           <FaEnvelope className="text-cyan-400 flex-shrink-0" />
+                           <a
+                              href="mailto:ranjeetjs644@gmail.com"
+                              className="text-sm text-gray-400 hover:text-cyan-400 transition-colors truncate"
+                           >
+                              ranjeetjs644@gmail.com
+                           </a>
                         </div>
-                        <p className="text-sm md:text-base text-gray-400 mt-2 break-words">
-                           ranjeetjs644@gmail.com
-                        </p>
-                     </motion.div>
+                     </div>
                   </div>
 
-                  {/* Interest Cards */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                  {/* Interests Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                      {interests.map((item, index) => (
                         <motion.div
                            key={index}
-                           whileHover={{
-                              scale: 1.05,
-                              rotateX: 5,
-                              rotateY: 5
-                           }}
-                           className="p-3 rounded-lg bg-gray-900/30 border border-gray-800 backdrop-blur-sm hover:border-blue-500/30 transform transition-all duration-300"
-                           style={{ transformStyle: "preserve-3d" }}
+                           whileHover={{ scale: 1.02 }}
+                           className="p-4 rounded-xl bg-gray-900/50 border border-gray-800/30 hover:border-indigo-500/20 transition-all"
                         >
-                           <div className="text-blue-400 text-lg sm:text-xl mb-1">{item.icon}</div>
-                           <p className="text-xs text-gray-400">{item.label}</p>
+                           <div className="text-2xl text-indigo-400 mb-3">{item.icon}</div>
+                           <h3 className="text-sm font-medium text-white mb-1">{item.label}</h3>
+                           <p className="text-xs text-gray-500">{item.desc}</p>
                         </motion.div>
                      ))}
                   </div>
                </motion.div>
 
-               {/* Education Timeline - Right Section */}
+               {/* Right Column - Education Timeline */}
                <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="relative"
+                  className="relative pl-8 before:absolute before:left-0 before:top-0 before:h-full before:w-px before:bg-gradient-to-b before:from-indigo-500/20 before:via-cyan-500/20 before:to-transparent"
                >
-                  <div className="absolute left-8 top-0 h-full w-px bg-gradient-to-b from-rose-400/20 via-fuchsia-500/20 to-indigo-500/20"></div>
-
                   {education.map((edu, index) => (
                      <motion.div
                         key={index}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        whileHover={{
-                           scale: 1.02,
-                           x: 10,
-                        }}
-                        transition={{
-                           duration: 0.3,
-                           delay: index * 0.2
-                        }}
-                        className="relative ml-16 mb-12"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.2 }}
+                        className="mb-8 relative"
                      >
-                        <motion.div
-                           initial={{ scale: 0.8 }}
-                           animate={{ scale: 1 }}
-                           className="absolute -left-20 top-0 w-8 h-8 rounded-full bg-gray-900 flex items-center justify-center"
-                           whileHover={{
-                              scale: 1.2,
-                              boxShadow: "0 0 20px rgba(59, 130, 246, 0.3)"
-                           }}
-                        >
-                           {index === 0 ?
-                              <FaGraduationCap className="text-sky-500" /> :
-                              <FaSchool className="text-rose-400" />
-                           }
-                        </motion.div>
-                        <div className="p-6 rounded-lg bg-gray-900/20 border border-gray-800 backdrop-blur-sm hover:border-sky-500/20 transition-all duration-300">
-                           <div className="text-sm text-fuchsia-500">{edu.year}</div>
-                           <h3 className="text-xl font-bold text-white mt-1">{edu.degree}</h3>
-                           <p className="text-gray-400">{edu.school}</p>
-                           <p className="text-sm text-gray-500 mt-2">{edu.details}</p>
-                           <div className="mt-4 h-1 bg-gray-800 rounded-full overflow-hidden">
+                        {/* Timeline Node */}
+                        <div className="absolute -left-[25px] top-0 w-[50px] h-[50px] rounded-full bg-gray-900/80 border border-gray-800/50 flex items-center justify-center">
+                           {index === 0 ? (
+                              <FaGraduationCap className="text-xl text-indigo-400" />
+                           ) : (
+                              <FaSchool className="text-xl text-cyan-400" />
+                           )}
+                        </div>
+
+                        {/* Content Card */}
+                        <div className="ml-8 p-6 rounded-xl bg-gray-900/50 border border-gray-800/30">
+                           <span className="text-sm text-indigo-400">{edu.year}</span>
+                           <h3 className="text-lg font-bold text-white mt-2">{edu.degree}</h3>
+                           <p className="text-sm text-gray-400 mt-1">{edu.school}</p>
+                           <p className="text-sm text-gray-500 mt-1">{edu.details}</p>
+
+                           {/* Progress Bar */}
+                           <div className="mt-4 h-1 bg-gray-800/50 rounded-full overflow-hidden">
                               <motion.div
-                                 className="h-full bg-gradient-to-r from-sky-400 to-blue-600"
+                                 className="h-full bg-gradient-to-r from-indigo-400 to-cyan-400"
                                  initial={{ width: 0 }}
                                  animate={{ width: `${edu.progress}%` }}
                                  transition={{ duration: 1, delay: 0.5 }}

@@ -37,6 +37,23 @@ const TechBadge = ({ tag }) => (
    </motion.span>
 );
 
+const GlowingOrb = ({ delay = 0, style }) => (
+   <motion.div
+      initial={{ opacity: 0 }}
+      animate={{
+         opacity: [0.1, 0.3, 0.1],
+         scale: [1, 1.2, 1],
+      }}
+      transition={{
+         duration: 8,
+         repeat: Infinity,
+         delay,
+      }}
+      className="absolute w-[30vw] h-[30vw] bg-gradient-radial from-indigo-500/5 to-transparent rounded-full blur-3xl"
+      style={style}
+   />
+);
+
 const projects = [
    {
       id: 1,
@@ -101,155 +118,162 @@ const experiences = [
 
 const Projects = () => {
    return (
-      <div className="min-h-screen py-24 px-6 lg:px-16 relative overflow-hidden bg-[#070606]">
-         {/* Background Pattern */}
-         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f1a_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f1a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+      <div className="min-h-screen py-12 md:py-24 px-4 relative overflow-hidden">
+         {/* Modern grid background */}
+         <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f0a_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f0a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+         </div>
 
-         <div className="max-w-7xl mx-auto relative z-10">
-            <motion.div
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               className="text-center mb-12"
-            >
-               <h1 className="text-3xl font-bold text-white mb-3">Experience & Projects</h1>
-               <p className="text-gray-400 text-sm">Showcasing my journey through internships and personal projects</p>
+         <div className="container mx-auto max-w-6xl relative z-10">
+            {/* Keep original header */}
+            <motion.div className="text-center mb-16">
+               <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="inline-block px-4 py-1.5 rounded-full text-xs font-medium bg-gray-900/50 text-gray-400 mb-4"
+               >
+                  Portfolio & Experience
+               </motion.span>
+               <motion.h1
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-3xl md:text-4xl font-bold tracking-tight"
+               >
+                  Projects <span className="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent"><span className='text-gray-400'>&</span> Experience </span>
+               </motion.h1>
             </motion.div>
 
-            {/* Grid Layout for Projects and Experiences */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-               {/* Left Side: Projects */}
-               <div>
-                  <h2 className="text-2xl font-bold text-white mb-6">Projects</h2>
-                  <div className="space-y-6">
-                     {projects.map((project, index) => (
-                        <motion.div
-                           key={project.id}
-                           variants={projectVariants}
-                           className="relative p-6 rounded-xl backdrop-blur-sm bg-white/[0.02] border border-white/[0.05] 
-                             hover:bg-white/[0.04] hover:border-sky-500/20 transition-all duration-300
-                             group"
-                        >
-                           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 
-                                  opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
-                           <div className="relative z-10">
-                              <div className="flex items-start gap-4">
-                                 <span className="p-2 rounded-lg bg-blue-500/10">
-                                    <FaCode className="w-5 h-5 text-blue-400" />
-                                 </span>
-                                 <div className="space-y-3 flex-1">
-                                    <h3 className="text-xl font-semibold text-white">{project.title}</h3>
-                                    <p className="text-sm text-gray-400 leading-relaxed">{project.description}</p>
-
-                                    {/* Technology sections */}
-                                    {project.technologies && (
-                                       <div className="space-y-2">
-                                          {Object.entries(project.technologies).map(([category, techs]) => (
-                                             <div key={category} className="flex flex-wrap gap-2">
-                                                {techs.map((tech, idx) => (
-                                                   <TechBadge key={idx} tag={tech} />
-                                                ))}
-                                             </div>
-                                          ))}
-                                       </div>
-                                    )}
-
-                                    {/* Project highlights */}
-                                    {project.highlights && (
-                                       <ul className="space-y-1 text-sm text-gray-400">
-                                          {project.highlights.map((highlight, idx) => (
-                                             <li key={idx} className="flex items-center gap-2">
-                                                <span className="w-1.5 h-1.5 bg-blue-400 rounded-full" />
-                                                {highlight}
-                                             </li>
-                                          ))}
-                                       </ul>
-                                    )}
-
-                                    {/* Links */}
-                                    <div className="flex gap-4 pt-4">
-                                       <motion.a
-                                          whileHover={{ scale: 1.05 }}
-                                          whileTap={{ scale: 0.95 }}
-                                          href={project.github}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="px-4 py-2 rounded-lg bg-white/5 text-sm text-gray-300 hover:bg-white/10 
-                                       flex items-center gap-2 transition-colors"
-                                       >
-                                          <FiGithub className="w-4 h-4" /> View Code
-                                       </motion.a>
-                                       {project.live && (
-                                          <motion.a
-                                             whileHover={{ scale: 1.05 }}
-                                             whileTap={{ scale: 0.95 }}
-                                             href={project.live}
-                                             target="_blank"
-                                             rel="noopener noreferrer"
-                                             className="px-4 py-2 rounded-lg bg-blue-500/10 text-sm text-blue-400 
-                                         hover:bg-blue-500/20 flex items-center gap-2 transition-colors"
-                                          >
-                                             <FiExternalLink className="w-4 h-4" /> Live Demo
-                                          </motion.a>
-                                       )}
-                                    </div>
-                                 </div>
-                              </div>
+            {/* Redesigned Projects Grid */}
+            <div className="grid md:grid-cols-2 gap-4">
+               {projects.map((project, index) => (
+                  <motion.div
+                     key={project.id}
+                     initial={{ opacity: 0, y: 20 }}
+                     animate={{ opacity: 1, y: 0 }}
+                     transition={{ delay: index * 0.1 }}
+                     className="group"
+                  >
+                     <div className="p-4 rounded-lg bg-gray-900/40 border border-gray-800/20 
+        hover:border-gray-700/40 transition-all duration-300"
+                     >
+                        {/* Project Header - More Compact */}
+                        <div className="flex items-start justify-between gap-4 mb-4">
+                           <div>
+                              <h3 className="text-lg font-bold text-white/90 group-hover:text-indigo-400/90 
+              transition-colors mb-1"
+                              >
+                                 {project.title}
+                              </h3>
+                              <p className="text-xs text-gray-400/80 leading-relaxed">
+                                 {project.description}
+                              </p>
                            </div>
-                        </motion.div>
-                     ))}
-                  </div>
-               </div>
 
-               {/* Right Side: Experiences */}
-               <div>
-                  <h2 className="text-2xl font-bold text-white mb-6">Experience</h2>
-                  <div className="space-y-6">
-                     {experiences.map((experience, index) => (
-                        <motion.div
-                           key={experience.id}
-                           initial={{ opacity: 0, y: 20 }}
-                           animate={{ opacity: 1, y: 0 }}
-                           whileHover={{
-                              scale: 1.02,
-                              boxShadow: "0 0 20px rgba(59, 130, 246, 0.1)"
-                           }}
-                           transition={{
-                              duration: 0.3,
-                              delay: index * 0.2
-                           }}
-                           className="relative p-6 rounded-xl backdrop-blur-sm bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.04] hover:border-sky-500/20 transition-all duration-300"
-                        >
-                           <div className="flex items-start gap-4">
-                              <span className="p-2 rounded-lg bg-blue-500/10">
-                                 <FaBriefcase className="w-5 h-5 text-blue-400" />
-                              </span>
-                              <div className="space-y-3 flex-1">
-                                 <h3 className="text-xl font-semibold text-white">{experience.title}</h3>
-                                 <p className="text-sm text-gray-400">{experience.company} • {experience.duration}</p>
-                                 <p className="text-sm text-gray-400">{experience.description}</p>
-                                 <div className="flex flex-wrap gap-2">
-                                    {experience.tags.map((tag, idx) => (
+                           <div className="flex gap-2 flex-shrink-0">
+                              <motion.a
+                                 whileHover={{ scale: 1.05 }}
+                                 whileTap={{ scale: 0.95 }}
+                                 href={project.github}
+                                 target="_blank"
+                                 rel="noopener noreferrer"
+                                 className="p-1.5 rounded-lg bg-gray-800/30 text-gray-400/80 
+                hover:bg-gray-800/50 transition-all"
+                              >
+                                 <FiGithub className="w-4 h-4" />
+                              </motion.a>
+                              {project.live && (
+                                 <motion.a
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    href={project.live}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="p-1.5 rounded-lg bg-gray-800/30 text-gray-400/80 
+                  hover:bg-gray-800/50 transition-all"
+                                 >
+                                    <FiExternalLink className="w-4 h-4" />
+                                 </motion.a>
+                              )}
+                           </div>
+                        </div>
+
+                        {/* Technologies - More Compact */}
+                        <div className="mb-4">
+                           {Object.entries(project.technologies).map(([category, techs]) => (
+                              <div key={category} className="mb-2 last:mb-0">
+                                 <h4 className="text-[10px] uppercase tracking-wider text-gray-500/70 mb-1">{category}</h4>
+                                 <div className="flex flex-wrap gap-1.5">
+                                    {techs.map((tech, idx) => (
                                        <span
                                           key={idx}
-                                          className="px-3 py-1 text-xs font-medium bg-white/5 text-gray-300 rounded-full"
+                                          className="px-2 py-0.5 text-[10px] bg-gray-800/30 text-gray-400/90 
+                      rounded-full border border-gray-700/20"
                                        >
-                                          {tag}
+                                          {tech}
                                        </span>
                                     ))}
                                  </div>
-                                 <a
-                                    href={experience.certificate}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-sm text-gray-400 hover:text-blue-400 flex items-center gap-2 pt-2"
-                                 >
-                                    <FiExternalLink /> View Certificate
-                                 </a>
+                              </div>
+                           ))}
+                        </div>
+
+                        {/* Highlights - More Compact */}
+                        <div className="grid grid-cols-1 gap-2">
+                           {project.highlights.map((highlight, idx) => (
+                              <div
+                                 key={idx}
+                                 className="p-2 rounded-lg bg-gray-800/20 border border-gray-800/10 
+                text-gray-400/80 text-xs"
+                              >
+                                 {highlight}
+                              </div>
+                           ))}
+                        </div>
+                     </div>
+                  </motion.div>
+               ))}
+            </div>
+
+            {/* Experience Section - Simplified */}
+            <div className="mt-16">
+               <h2 className="text-lg font-semibold text-white/90 mb-6">Experience</h2>
+               <div className="grid md:grid-cols-2 gap-4">
+                  {experiences.map((exp, index) => (
+                     <motion.div
+                        key={exp.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.2 }}
+                        className="p-4 rounded-lg bg-gray-900/40 border border-gray-800/20 
+          hover:border-gray-700/40 transition-all duration-300"
+                     >
+                        <div className="flex gap-3">
+                           <div className="p-2 rounded-lg bg-gray-800/30">
+                              <FaBriefcase className="w-4 h-4 text-gray-400/80" />
+                           </div>
+                           <div>
+                              <h3 className="text-base font-medium text-white/90">
+                                 {exp.title}
+                              </h3>
+                              <p className="text-xs text-gray-400/80 mt-1">
+                                 {exp.company} • {exp.duration}
+                              </p>
+                              <p className="text-xs text-gray-500/80 mt-2">{exp.description}</p>
+                              <div className="flex flex-wrap gap-2 mt-3">
+                                 {exp.tags.map((tag, idx) => (
+                                    <span
+                                       key={idx}
+                                       className="px-2 py-0.5 text-xs bg-gray-800/30 text-gray-400/80 
+                    rounded-full border border-gray-800/10"
+                                    >
+                                       {tag}
+                                    </span>
+                                 ))}
                               </div>
                            </div>
-                        </motion.div>
-                     ))}
-                  </div>
+                        </div>
+                     </motion.div>
+                  ))}
                </div>
             </div>
          </div>

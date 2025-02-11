@@ -22,6 +22,17 @@ body {
     color: white;
 }
 
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+section {
+    position: relative;
+    width: 100%;
+}
+
 /* Animation Keyframes */
 @keyframes float {
 
@@ -60,6 +71,16 @@ body {
 
     100% {
         background-position: 0% 50%;
+    }
+}
+
+@keyframes subtleFloat {
+    0% {
+        background-position: 0px 0px;
+    }
+
+    100% {
+        background-position: 24px 24px;
     }
 }
 
@@ -366,4 +387,162 @@ body {
 ::selection {
     background: rgba(14, 165, 233, 0.2);
     color: #fff;
+}
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* Mobile touch feedback */
+    .touch-feedback {
+        @apply active:scale-95 transition-transform duration-150;
+    }
+
+    /* Mobile-optimized gradients */
+    .mobile-gradient {
+        @apply bg-gradient-to-br from-gray-900/90 to-gray-900/50;
+    }
+
+    /* Mobile card styles */
+    .mobile-card {
+        @apply relative overflow-hidden backdrop-blur-sm;
+    }
+
+    /* Mobile text styles */
+    .mobile-text {
+        @apply text-xs sm:text-sm leading-relaxed;
+    }
+
+    /* Desktop card effects */
+    .perspective-1000 {
+        perspective: 1000px;
+    }
+
+    .animate-grid {
+        animation: gridMove 20s linear infinite;
+    }
+}
+
+@keyframes gridMove {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 24px 24px;
+    }
+}
+
+/* Add these mobile-specific styles */
+@media (max-width: 768px) {
+    .mobile-card {
+        @apply relative overflow-hidden;
+    }
+
+    .mobile-card::before {
+        content: '';
+        @apply absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 opacity-0 transition-opacity duration-300;
+    }
+
+    .mobile-card:active::before {
+        @apply opacity-100;
+    }
+
+    .mobile-text-gradient {
+        @apply bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent;
+    }
+
+    .mobile-touch-feedback {
+        @apply active:scale-98 transition-transform duration-150;
+    }
+
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease-out;
+    }
+
+    .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Smooth scrolling for mobile */
+@media (max-width: 768px) {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+/* Desktop enhancements */
+@media (min-width: 768px) {
+    .skill-card-hover {
+        transform: perspective(1000px) rotateX(0) rotateY(0);
+        transition: transform 0.5s ease;
+    }
+
+    .skill-card-hover:hover {
+        transform: perspective(1000px) rotateX(2deg) rotateY(2deg);
+    }
+
+    /* Gradient animation for desktop */
+    .gradient-animate {
+        background-size: 200% 200%;
+        animation: gradientMove 15s ease infinite;
+    }
+
+    @keyframes gradientMove {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    /* Enhance scrollbar for desktop */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(59, 130, 246, 0.2);
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(59, 130, 246, 0.4);
+    }
+
+    .group:hover {
+        transform: translateZ(20px) rotateX(2deg) rotateY(2deg);
+    }
+
+    .group:hover .skill-icon {
+        transform: translateZ(30px);
+    }
+}
+
+.bg-pattern {
+    animation: subtleFloat 20s linear infinite;
 }

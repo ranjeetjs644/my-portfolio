@@ -10,20 +10,20 @@ import GlowingCursor from "./components/GlowingCursor.jsx";
 function App() {
   return (
     <BrowserRouter>
-      <div className="relative min-h-screen">
+      <div className="relative">
         <GlowingCursor />
         <Navbar />
-        <main id="scroll-container" className="pt-16  h-full">
-          <section id="home" className="h-screen">
+        <main className="pt-16">
+          <section id="home" className="min-h-screen">
             <Home />
           </section>
-          <section id="about" className="h-screen">
+          <section id="about" className="min-h-screen pt-16">
             <About />
           </section>
-          <section id="skills" className="h-screen">
+          <section id="skills" className="min-h-screen pt-16">
             <Skills />
           </section>
-          <section id="projects" className="h-screen">
+          <section id="projects" className="min-h-screen pt-16">
             <Projects />
           </section>
         </main>

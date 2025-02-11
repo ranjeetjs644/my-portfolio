@@ -14,7 +14,7 @@ const GlowingCursor = () => {
 
     return (
         <div
-            class="glowing-effect"
+            className="glowing-effect"
             style={{
                 left: `${position.x}px`,
                 top: `${position.y}px`,

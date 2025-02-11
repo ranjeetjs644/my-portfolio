@@ -16,7 +16,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 w-full backdrop-blur-sm z-50  ">
+    <nav className="fixed top-0 left-0 right-0 w-full backdrop-blur-sm z-50 bg-transparent  ">
       <div className="w-[95%] lg:w-[70%] mx-auto flex items-center justify-between px-4 py-2 mt-4">
         <HashLink
           smooth
