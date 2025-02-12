@@ -7,10 +7,11 @@ import Skills from "./pages/Skills";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import GlowingCursor from "./components/GlowingCursor";
+import Footer from './pages/Footer';
 
 function App() {
   return (
-    <div className="relative md:w-[75%] mx-auto">
+    <div className="min-h-screen bg-gray-950">
       <GlowingCursor />
       <Navbar />
       <main>
@@ -36,6 +37,7 @@ function App() {
           } />
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 }
