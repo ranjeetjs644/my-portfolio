@@ -84,6 +84,21 @@ section {
     }
 }
 
+/* Add to your global CSS file */
+@keyframes gradient-x {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 /* Essential Animations */
 .animate-float {
     animation: float 3s ease-in-out infinite;
@@ -100,6 +115,11 @@ section {
 .animate-gradient {
     background-size: 200% 200%;
     animation: gradient 8s ease infinite;
+}
+
+.animate-gradient-x {
+    animation: gradient-x 3s linear infinite;
+    background-size: 200% 200%;
 }
 
 /* Custom Button Styles */
@@ -545,4 +565,15 @@ section {
 
 .bg-pattern {
     animation: subtleFloat 20s linear infinite;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+    -webkit-text-fill-color: #e5e7eb;
+    -webkit-box-shadow: 0 0 0px 1000px #111827 inset;
+    transition: background-color 5000s ease-in-out 0s;
 }

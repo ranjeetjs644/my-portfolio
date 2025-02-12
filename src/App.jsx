@@ -1,34 +1,42 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import Navbar from "./components/Navbar.jsx";
-import Home from "./pages/Home.jsx";
-import About from "./pages/About.jsx";
-import Skills from "./pages/Skills.jsx";
-import Projects from "./pages/Projects.jsx";
-import GlowingCursor from "./components/GlowingCursor.jsx";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Skills from "./pages/Skills";
+import Projects from "./pages/Projects";
+import Contact from "./pages/Contact";
+import GlowingCursor from "./components/GlowingCursor";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="relative">
-        <GlowingCursor />
-        <Navbar />
-        <main className="pt-16">
-          <section id="home" className="min-h-screen">
-            <Home />
-          </section>
-          <section id="about" className="min-h-screen pt-16">
-            <About />
-          </section>
-          <section id="skills" className="min-h-screen pt-16">
-            <Skills />
-          </section>
-          <section id="projects" className="min-h-screen pt-16">
-            <Projects />
-          </section>
-        </main>
-      </div>
-    </BrowserRouter>
+    <div className="relative md:w-[75%] mx-auto">
+      <GlowingCursor />
+      <Navbar />
+      <main>
+        <Routes>
+          <Route path="/" element={
+            <>
+              <section id="home">
+                <Home />
+              </section>
+              <section id="about">
+                <About />
+              </section>
+              <section id="skills">
+                <Skills />
+              </section>
+              <section id="projects">
+                <Projects />
+              </section>
+              <section id="contact">
+                <Contact />
+              </section>
+            </>
+          } />
+        </Routes>
+      </main>
+    </div>
   );
 }
 

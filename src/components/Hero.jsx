@@ -1,12 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaMapMarkerAlt, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram, FaXingSquare } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 import { TypeAnimation } from 'react-type-animation';
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 const Hero = () => {
     return (
-        <div className="min-h-screen w-full flex items-center justify-center relative">
+        <div className="min-h-screen mt-12 md:mt-0 w-full flex items-center justify-center relative">
             {/* Subtle grid background */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-[size:32px_32px]"></div>
 
@@ -58,24 +60,21 @@ const Hero = () => {
                         </p>
 
                         <div className="flex gap-4 pt-4">
-                            <motion.a
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                href="/resume.pdf"
+                            <Link
+                                to="/resume.pdf"
                                 className="px-6 py-3 bg-blue-500 text-white rounded-lg text-sm font-medium 
-                  hover:bg-blue-600 transition-colors"
+                                hover:bg-blue-600 transition-colors cursor-pointer"
                             >
                                 View Resume
-                            </motion.a>
-                            <motion.a
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                href="#contact"
+                            </Link>
+                            <HashLink
+                                to="/#contact"
+                                smooth
                                 className="px-6 py-3 bg-gray-800 text-gray-200 rounded-lg text-sm font-medium 
-                  hover:bg-gray-700 transition-colors"
+                                hover:bg-gray-700 transition-colors cursor-pointer"
                             >
                                 Get in Touch
-                            </motion.a>
+                            </HashLink>
                         </div>
                     </motion.div>
 
@@ -90,8 +89,9 @@ const Hero = () => {
                             <div className="grid grid-cols-2 gap-4 p-8">
                                 {[
                                     { icon: <FaGithub size={24} />, url: "https://github.com/ranjeetjs644" },
-                                    { icon: <FaLinkedin size={24} />, url: "https://linkedin.com/in/yourusername" },
-                                    { icon: <SiLeetcode size={24} />, url: "https://leetcode.com/yourusername" },
+                                    { icon: <FaLinkedin size={24} />, url: "https://www.linkedin.com/in/ranjeetjs/" },
+                                    { icon: <FaXingSquare size={24} />, url: "https://x.com/ranjeetjs644" },
+                                    { icon: <FaInstagram size={24} />, url: "https://instagram.com/_ranjeetttt" },
                                 ].map((social, index) => (
                                     <motion.a
                                         key={index}

@@ -171,8 +171,6 @@ const Projects = () => {
 
                            <div className="flex gap-2 flex-shrink-0">
                               <motion.a
-                                 whileHover={{ scale: 1.05 }}
-                                 whileTap={{ scale: 0.95 }}
                                  href={project.github}
                                  target="_blank"
                                  rel="noopener noreferrer"

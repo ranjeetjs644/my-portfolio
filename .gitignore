@@ -1,0 +1,6 @@
+# add all necessary file
+# add all necessary file
+.env
+node_modules
+dist
+coverage
