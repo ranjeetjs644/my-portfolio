@@ -4,6 +4,10 @@ import tailwindcss from '@tailwindcss/vite';
 import { webfontDownload } from 'vite-plugin-webfont-dl';
 
 export default defineConfig({
+  server: {
+    host: '0.0.0.0', // Listen on all network interfaces
+    port: 5173, // Default Vite port
+  },
   plugins: [
     react(),
     tailwindcss({
